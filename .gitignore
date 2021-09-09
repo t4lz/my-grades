@@ -1,3 +1,10 @@
+# The raw json/html files from TUM-Online
+grades.json
+stats/
+
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
