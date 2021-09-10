@@ -17,6 +17,7 @@ $.getJSON("js/grade_data.json", function(grades) {
     let charts = [];
     for (let i in grades) {
         let grade = grades[i];
+        let myGrade = grade['grade'];
         let newElement = template.cloneNode(true);
         let title = newElement.getElementsByTagName("h6")[0];
         title.textContent = grade['course_name_en'];
@@ -24,10 +25,15 @@ $.getJSON("js/grade_data.json", function(grades) {
         row.appendChild(newElement);
         let canvas = newElement.getElementsByTagName('canvas');
         let labels = grade['1.4'] || grade['2.4'] || grade['3.4'] ? gradeStrs4 : gradeStrs;
+        let myGradeIndex = labels.indexOf(myGrade);
         let data = [];
         for (let label in labels) {
             data.push(grade[labels[label]]);
         }
+        let colors = Array(labels.length).fill("#0065BD")
+        colors[myGradeIndex] = "#28a745";
+        let hoverColors = Array(labels.length).fill("#005293")
+        hoverColors[myGradeIndex] = "#20c997";
         let chart = new Chart(canvas, {
             type: 'bar',
             data: {
@@ -37,8 +43,8 @@ $.getJSON("js/grade_data.json", function(grades) {
                     // backgroundColor: "#4e73df",
                     // hoverBackgroundColor: "#2e59d9",
                     // borderColor: "#4e73df",
-                    backgroundColor: "#0065BD",
-                    hoverBackgroundColor: "#005293",
+                    backgroundColor: colors,
+                    hoverBackgroundColor: hoverColors,
                     borderColor: "#0065BD",
                     data: data,
                 }],
