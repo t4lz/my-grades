@@ -19,8 +19,14 @@ $.getJSON("js/grade_data.json", function(grades) {
         let grade = grades[i];
         let myGrade = grade['grade'];
         let newElement = template.cloneNode(true);
-        let title = newElement.getElementsByTagName("h6")[0];
+        let title = newElement.getElementsByClassName("course-name")[0];
         title.textContent = grade['course_name_en'];
+        let gradeDiv = newElement.getElementsByClassName("course-grade")[0];
+        gradeDiv.textContent = myGrade;
+        let ectsDiv = newElement.getElementsByClassName("ects-text")[0];
+        ectsDiv.textContent = grade['ects'] + " ECTS";
+        let sememesterDiv = newElement.getElementsByClassName("semester-text")[0];
+        sememesterDiv.textContent = grade['semester_name_en'];
         charts.push(newElement);
         row.appendChild(newElement);
         let canvas = newElement.getElementsByTagName('canvas');
