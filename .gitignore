@@ -1,5 +1,8 @@
-# The raw json/html files from TUM-Online
+# bash script to fetch data, contains auth info.
+fetch_stats.sh
+# json from TUM-online, might contain info that should not be public.
 grades.json
+# html files from TUN-online, might contain info that should not be public.
 stats/
 
 
