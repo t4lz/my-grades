@@ -9,6 +9,92 @@ $.getJSON("js/agg_data.json", function(json) {
     percentileCard.textContent = json['avg_percentile'].toFixed(2) + "%";
 });
 
+$.getJSON("js/semester_data.json", function(semesterData) {
+    let canvas = document.getElementById("semester-linechart-canvas");
+    let datasets = [];
+    let yAxes = [];
+    let labels;
+    let colors = [
+        "#00796B",
+        "#FFC107",
+        "#B2DFDB",
+        "#757575",
+        "#E64A19",
+    ];
+    let colorIndex = 0;
+    for (let key in semesterData) {
+        if (key === "semester_code") {
+            labels = semesterData[key];
+        } else {
+            color = colors[colorIndex++];
+            datasets.push({label: key, data: semesterData[key], yAxisID: key, fill: false,
+                backgroundColor: color,
+                borderColor: color,
+            });
+            yAxes.push({
+                id: key,
+                type: 'linear',
+                display: false,
+                stacked: false,
+                gridLines: {
+                    display: false
+                },
+
+            });
+        }
+    }
+    let chart = new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: datasets,
+        },
+        options: {
+            responsive: true,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            maintainAspectRatio: false,
+            stacked: false,
+            // layout: {
+            //     padding: {
+            //         left: 10,
+            //         right: 25,
+            //         top: 25,
+            //         bottom: 0
+            //     }
+            // },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                }],
+                yAxes: yAxes,
+            },
+            legend: {
+                display: true
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        let y = tooltipItem.yLabel;
+                        let label = data.datasets[tooltipItem.datasetIndex].label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        label += y % 1 === 0 ? y : y.toFixed(2);
+                        return label;
+                    }
+                }
+
+            },
+        }
+    });
+});
+
 $.getJSON("js/grade_data.json", function(grades) {
     let row = document.getElementById("bar-charts-row");
     let template = document.getElementById("template-bar-chart");
