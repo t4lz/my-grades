@@ -122,10 +122,10 @@ $.getJSON("js/grade_data.json", function(grades) {
         for (let label in labels) {
             data.push(grade[labels[label]]);
         }
-        let colors = Array(labels.length).fill("#0065BD")
-        colors[myGradeIndex] = "#28a745";
-        let hoverColors = Array(labels.length).fill("#005293")
-        hoverColors[myGradeIndex] = "#20c997";
+        let colors = Array(labels.length).fill("#adb5bd")
+        colors[myGradeIndex] = "#20c997";
+        let hoverColors = Array(labels.length).fill("#17a2b8")
+        hoverColors[myGradeIndex] = "#28a745";
         let chart = new Chart(canvas, {
             type: 'bar',
             data: {
