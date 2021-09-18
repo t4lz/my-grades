@@ -128,8 +128,8 @@ $.getJSON("js/grade_data.json", function(grades) {
         }
         let colors = Array(labels.length).fill("#adb5bd");
         colors[myGradeIndex] = "#20c997";
-        let hoverColors = Array(labels.length).fill("#17a2b8");
-        hoverColors[myGradeIndex] = "#28a745";
+        let hoverColors = Array(labels.length).fill("#B2DFDB");
+        hoverColors[myGradeIndex] = "#17a2b8";
         let chart = new Chart(canvas, {
             type: 'bar',
             data: {
@@ -189,7 +189,7 @@ $.getJSON("js/personal_distribution.json", function(dist) {
         let canvas = document.getElementById('personal-distribution-barchart-canvas');
         let labels = gradeStrs;
         let colors = Array(labels.length).fill("#20c997");
-        let hoverColors = Array(labels.length).fill("#28a745");
+        let hoverColors = Array(labels.length).fill("#17a2b8");
         let chart = new Chart(canvas, {
             type: 'bar',
             data: {
