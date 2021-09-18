@@ -116,7 +116,7 @@ $.getJSON("js/grade_data.json", function(grades) {
         let zDiv = newElement.getElementsByClassName("z-score-text")[0];
         zDiv.textContent = "Z-Score: " + grade['z'].toFixed(2);
         let percentileDiv = newElement.getElementsByClassName("percentile-text")[0];
-        percentileDiv.textContent = "Top " + grade['percentile'].toFixed(2) + "%";
+        percentileDiv.textContent = grade['percentile'].toFixed(2) + " percentile";
         charts.push(newElement);
         row.appendChild(newElement);
         let canvas = newElement.getElementsByTagName('canvas');
