@@ -1,3 +1,5 @@
+let gradeStrs = ['1.0', '1.3', '1.7', '2.0', '2.3', '2.7', '3.0', '3.3', '3.7', '4.0', '4.3', '4.7', '5.0'];
+let gradeStrs4 = ['1.0', '1.3', '1.4', '1.7', '2.0', '2.3', '2.4', '2.7', '3.0', '3.3', '3.4', '3.7', '4.0', '4.3', '4.7', '5.0'];
 let ectsCard = document.getElementById("ects-card-text");
 let gradeCard = document.getElementById("grade-card-text");
 let zscoreCard = document.getElementById("zscore-card-text");
@@ -98,8 +100,6 @@ $.getJSON("js/semester_data.json", function(semesterData) {
 $.getJSON("js/grade_data.json", function(grades) {
     let row = document.getElementById("bar-charts-row");
     let template = document.getElementById("template-bar-chart");
-    let gradeStrs = ['1.0', '1.3', '1.7', '2.0', '2.3', '2.7', '3.0', '3.3', '3.7', '4.0', '4.3', '4.7', '5.0'];
-    let gradeStrs4 = ['1.0', '1.3', '1.4', '1.7', '2.0', '2.3', '2.4', '2.7', '3.0', '3.3', '3.4', '3.7', '4.0', '4.3', '4.7', '5.0'];
     let charts = [];
     for (let i in grades) {
         let grade = grades[i];
@@ -126,9 +126,9 @@ $.getJSON("js/grade_data.json", function(grades) {
         for (let label in labels) {
             data.push(grade[labels[label]]);
         }
-        let colors = Array(labels.length).fill("#adb5bd")
+        let colors = Array(labels.length).fill("#adb5bd");
         colors[myGradeIndex] = "#20c997";
-        let hoverColors = Array(labels.length).fill("#17a2b8")
+        let hoverColors = Array(labels.length).fill("#17a2b8");
         hoverColors[myGradeIndex] = "#28a745";
         let chart = new Chart(canvas, {
             type: 'bar',
@@ -183,4 +183,62 @@ $.getJSON("js/grade_data.json", function(grades) {
         });
     }
     template.remove();
+});
+
+$.getJSON("js/personal_distribution.json", function(dist) {
+        let canvas = document.getElementById('personal-distribution-barchart-canvas');
+        let labels = gradeStrs;
+        let colors = Array(labels.length).fill("#20c997");
+        let hoverColors = Array(labels.length).fill("#28a745");
+        let chart = new Chart(canvas, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Relative part of this grade",
+                    // backgroundColor: "#4e73df",
+                    // hoverBackgroundColor: "#2e59d9",
+                    // borderColor: "#4e73df",
+                    backgroundColor: colors,
+                    hoverBackgroundColor: hoverColors,
+                    borderColor: "#0065BD",
+                    data: dist,
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 25,
+                        top: 25,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                    }],
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            let label = data.datasets[tooltipItem.datasetIndex].label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += tooltipItem.yLabel.toFixed(2);
+                            return label;
+                        }
+                    }
+
+                },
+            }
+        });
 });
