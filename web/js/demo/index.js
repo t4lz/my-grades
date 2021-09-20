@@ -100,14 +100,18 @@ $.getJSON("js/semester_data.json", function(semesterData) {
     });
 });
 
+let charts = {};
+let gradeList = [];
+let row = document.getElementById("bar-charts-row");
+
 $.getJSON("js/grade_data.json", function(grades) {
-    let row = document.getElementById("bar-charts-row");
+    gradeList = grades;
     let template = document.getElementById("template-bar-chart");
-    let charts = [];
     for (let i in grades) {
         let grade = grades[i];
         let myGrade = grade['grade'];
         let newElement = template.cloneNode(true);
+        newElement.id = grade['id'];
         let title = newElement.getElementsByClassName("course-name")[0];
         title.textContent = grade['course_name_en'];
         let gradeDiv = newElement.getElementsByClassName("course-grade")[0];
@@ -120,7 +124,7 @@ $.getJSON("js/grade_data.json", function(grades) {
         zDiv.textContent = "Z-Score: " + grade['z'].toFixed(2);
         let percentileDiv = newElement.getElementsByClassName("percentile-text")[0];
         percentileDiv.textContent = grade['percentile'].toFixed(2) + " percentile";
-        charts.push(newElement);
+        charts[grade['id']] = newElement;
         row.appendChild(newElement);
         let canvas = newElement.getElementsByTagName('canvas');
         let labels = grade['1.4'] || grade['2.4'] || grade['3.4'] ? gradeStrs4 : gradeStrs;
@@ -245,3 +249,35 @@ $.getJSON("js/personal_distribution.json", function(dist) {
             }
         });
 });
+
+function hideAllCheckmarks() {
+    [].forEach.call(document.querySelectorAll('.sorting-checkmark'), function (el) {
+        el.style.visibility = 'hidden';
+    });
+}
+function sortClick(sortingButton, compareFunc) {
+    hideAllCheckmarks();
+    sortingButton.getElementsByClassName("sorting-checkmark")[0].style.visibility = 'visible';
+    gradeList.sort(compareFunc);
+    for (let i in gradeList) {
+        row.appendChild(charts[gradeList[i]['id']]);
+    }
+}
+
+function setUpSorting(element, func) {
+    element.onclick = () => sortClick(element, func);
+
+}
+
+let sortGradeDesc = document.getElementById("sort-grade-descending");
+setUpSorting(sortGradeDesc, (grade1, grade2) => grade2['int_grade_X10'] - grade1['int_grade_X10']);
+let sortGradeAsc = document.getElementById("sort-grade-ascending");
+setUpSorting(sortGradeAsc, (grade1, grade2) => (grade1['int_grade_X10'] - grade2['int_grade_X10']) * 100 + grade2['ects'] - grade1['ects']);
+let sortDateAsc = document.getElementById("sort-date-ascending");
+setUpSorting(sortDateAsc, (grade1, grade2) => grade1['grade_date'].localeCompare(grade2['grade_date']));
+let sortDateDesc = document.getElementById("sort-date-descending");
+setUpSorting(sortDateDesc, (grade1, grade2) => grade2['grade_date'].localeCompare(grade1['grade_date']));
+let sortECTSAsc = document.getElementById("sort-ects-ascending");
+setUpSorting(sortECTSAsc, (grade1, grade2) => grade1['ects'] - grade2['ects']);
+let sortECTSDesc = document.getElementById("sort-ects-descending");
+setUpSorting(sortECTSDesc, (grade1, grade2) => grade2['ects'] - grade1['ects']);
