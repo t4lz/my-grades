@@ -1,11 +1,14 @@
 let gradeStrs = ['1.0', '1.3', '1.7', '2.0', '2.3', '2.7', '3.0', '3.3', '3.7', '4.0', '4.3', '4.7', '5.0'];
 let gradeStrs4 = ['1.0', '1.3', '1.4', '1.7', '2.0', '2.3', '2.4', '2.7', '3.0', '3.3', '3.4', '3.7', '4.0', '4.3', '4.7', '5.0'];
 let ectsCard = document.getElementById("ects-card-text");
+let ectsProgressBar = document.getElementById("ects-progress-bar");
 let gradeCard = document.getElementById("grade-card-text");
 let zscoreCard = document.getElementById("zscore-card-text");
 let percentileCard = document.getElementById("percentile-card-text");
 $.getJSON("js/agg_data.json", function(json) {
     ectsCard.textContent = json['total_ects'];
+    ectsProgressBar.style.width = (((json['total_ects'] * 100) / 180) | 0) + "%";
+    $('#ects-progress-bar').attr("aria-valuenow","" + json['total_ects']);
     gradeCard.textContent = json['avg_grade'].toFixed(2);
     zscoreCard.textContent = json['mean_z_score'].toFixed(2);
     percentileCard.textContent = json['avg_percentile'].toFixed(2) + "%";

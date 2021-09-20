@@ -267,42 +267,6 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
@@ -313,7 +277,6 @@
                                         <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
 
@@ -360,7 +323,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Overall Summary</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -381,8 +344,20 @@
                                                 loading...
                                             </div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        <div class="dropdown no-arrow ">
+                                            <div class="dropdown-toggle btn btn-info btn-circle btn-sm" role="button" id="average-grade-dropdown-info"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-info-circle fa-2x text-white"></i>
+                                            </div>
+                                            <div style="padding: 1rem" class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                 aria-labelledby="average-grade-dropdown-info">
+                                                <div class="dropdown-header">Average Grade</div>
+                                                <div>The grades are <a href="https://www.ph.tum.de/academics/faq/grading/?language=en">in the german academic grading system</a>,
+                                                    where 1.0 is the best possible grade and 5.0 is the worst.
+                                                    The average grade is a weighted average of all my grades up until now.
+                                                Almost all grades are weighted with their number of ECTS credits. Three
+                                                courses from the first semester are weighted with half their ECTS credits.</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -404,7 +379,22 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <div class="dropdown no-arrow ">
+                                                <div class="dropdown-toggle btn btn-info btn-circle btn-sm" role="button" id="average-percentile-dropdown-info"
+                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-info-circle fa-2x text-white"></i>
+                                                </div>
+                                                <div style="padding: 1rem" class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                     aria-labelledby="average-percentile-dropdown-info">
+                                                    <div class="dropdown-header">Average Percentile</div>
+                                                    <div>
+                                                        The lower, the better. The percentile of my grade in each course
+                                                        is calculated and then weighted by ECTS and the number of
+                                                        students in that course. This average shows the average percent
+                                                        of students that had better grades than me in my courses.
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -425,17 +415,30 @@
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
                                                          id="zscore-card-text">loading...</div>
                                                 </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            <div class="dropdown no-arrow ">
+                                                <div class="dropdown-toggle btn btn-info btn-circle btn-sm" role="button" id="average-z-dropdown-info"
+                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-info-circle fa-2x text-white"></i>
+                                                </div>
+                                                <div style="padding: 1rem" class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                     aria-labelledby="average-z-dropdown-info">
+                                                    <div class="dropdown-header">Average Z-Score</div>
+                                                    <div>
+                                                        The lower, the better (a negative number is good).
+                                                        The <a href="https://en.wikipedia.org/wiki/Standard_score">Z-Score</a>
+                                                        is a standardized score that allow to data points from different distributions.
+                                                        The standard score is calculated by subtracting the mean and dividing by the standard deviation.
+                                                        The units are standard deviations.
+                                                        The average shown here is made from the Z-scores calculated separately for each course and is weighted
+                                                        by ECTS and number of students in that course.
+                                                        We can see that in average my grades are about one standard
+                                                        deviation better than the mean grade in that course.
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -451,12 +454,36 @@
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 ECTS Credits So Far
                                             </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="ects-card-text">
-                                                loading...
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
+                                                         id="ects-card-text">loading...</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                             id="ects-progress-bar"
+                                                             style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                                             aria-valuemax="180"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <div class="dropdown no-arrow ">
+                                                <div class="dropdown-toggle btn btn-info btn-circle btn-sm" role="button" id="average-z-dropdown-info"
+                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-info-circle fa-2x text-white"></i>
+                                                </div>
+                                                <div style="padding: 1rem" class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                     aria-labelledby="average-z-dropdown-info">
+                                                    <div class="dropdown-header">ECTS Credits</div>
+                                                    <div>
+                                                        Total sum of <a href="https://en.wikipedia.org/wiki/European_Credit_Transfer_and_Accumulation_System">ECTS credits</a> so far. 180 are required for the degree.
+                                                        In Germany, each ECTS point is supposed to represent 30 hours of work.
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -509,6 +536,13 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">All Exam Grade Distributions</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
                     <!-- Content Row -->
