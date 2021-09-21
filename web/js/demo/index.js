@@ -24,7 +24,7 @@ $.getJSON("js/semester_data.json", function(semesterData) {
         "#FFC107",
         "#B2DFDB",
         "#757575",
-        "#E64A19",
+        "#F8BBD0",
     ];
     let colorIndex = 0;
     for (let key in semesterData) {
