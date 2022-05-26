@@ -11,8 +11,12 @@ Surfed with my browser with the developer tools open to [the "My achievements" p
 
 Getting The Exam Statistics
 ---------------------------
+__Update:__ The internal "API" I was using chagned, and it now (2022) returns structured data, as a json.
+I did a quick update to the code to fetch and analyze those new jsons instead of parsing html files.
+I am however leaving here also the old text about parsing html files.
 
-For the Exam Statistics I did not find a request that returns a json (even thought there probably some api or some way to get that), so I am just parsing the html. A request that returns an html with all the data I want for one exam is: `https://campus.tum.de/tumonline/pl/ui/$ctx;design=ca2;header=max;lang=de/WBEXAMSTATISTICS.wbStart?pOrgNr=&pStpSpNr=950552753`. I copied that request as curl from the developer tools, to use in little script. I figured the number at the end must be some kind of course/exam id, and looked for it in the json I download in the last section. It was indeed there, so with python I created a file with just a list of all the ids of my exams:
+__Old "API" (no API)"__
+For the Exam Statistics I did not find a request that returns a json (even though there probably some api or some way to get that), so I am just parsing the html. A request that returns an html with all the data I want for one exam is: `https://campus.tum.de/tumonline/pl/ui/$ctx;design=ca2;header=max;lang=de/WBEXAMSTATISTICS.wbStart?pOrgNr=&pStpSpNr=950552753`. I copied that request as curl from the developer tools, to use in little script. I figured the number at the end must be some kind of course/exam id, and looked for it in the json I download in the last section. It was indeed there, so with python I created a file with just a list of all the ids of my exams:
 `extract_ids.py`
 ```
 import json
