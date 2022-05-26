@@ -4,6 +4,7 @@ fetch_stats.sh
 grades.json
 # html files from TUN-online, might contain info that should not be public.
 stats/
+json_stats/
 
 
 
